@@ -2,7 +2,7 @@
 
 Arthas排查spring boot问题的案例。
 
-为了Clone更快和演示更方便,对原工程的示例代码进行了部分修改和整合。
+为了Clone更快和演示更方便,对[@断岭](https://github.com/hengyunabc)原工程的示例代码进行了部分修改和整合。
 * https://github.com/hengyunabc/spring-boot-inside/tree/master/demo-arthas-spring-boot
 
 [PPT(TBD)]()
