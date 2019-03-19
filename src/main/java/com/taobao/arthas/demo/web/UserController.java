@@ -35,8 +35,8 @@ public class UserController {
             throw new IllegalArgumentException("Id must not be  null");
         }
         if (id < 1) {
-            return new User(id, "name:" + id);
-//            throw new IllegalArgumentException("id < 1");
+            // return new User(id, "name:" + id);
+           throw new IllegalArgumentException("id < 1");
         }
         return new User(id, "name:" + id);
     }
@@ -52,7 +52,3 @@ public class UserController {
     }
 
 }
-// 1. Trace 案例更改 具体耗时
-// 2. Terminal 字体 以及数量控制一下
-// 3. 增加在线演示文档展示
-// 4. 增加互动实践时间，控制命令个数
