@@ -80,7 +80,7 @@ trace  com.taobao.arthas.demo.web.UserController findUserById2 > trace.log
 反编译
 
 ```bash
-jad --source-only com.taobao.arthas.demo.web.UserController
+jad --source-only com.taobao.arthas.demo.web.UserController > UserController.java
 ```
 
 ### 8. Mc
@@ -114,7 +114,7 @@ ognl '@com.taobao.arthas.demo.web.UserController@LOGGER'
 动态修改LOGGER LEVEL
 
 ```bash
-ognl '@com.taobao.arthas.demo.web.UserController   @LOGGER.setLevel(@ch.qos.logback.classic.Level@INFO)'
+ognl '@com.taobao.arthas.demo.web.UserController   @LOGGER.setLevel(@ch.qos.logback.classic.Level@DEBUG)'
 ```
 
 获取加载的日志配置文件
