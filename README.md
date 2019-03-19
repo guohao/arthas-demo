@@ -6,8 +6,6 @@ Arthas排查spring boot问题的案例。
 
 * [https://github.com/hengyunabc/spring-boot-inside/tree/master/demo-arthas-spring-boot](https://github.com/hengyunabc/spring-boot-inside/tree/master/demo-arthas-spring-boot)
 
-[PPT(TBD)](#)
-
 ## 链接
 
 * [https://github.com/alibaba/arthas](https://github.com/alibaba/arthas)
@@ -28,77 +26,99 @@ java -jar arthas-boot.jar
 ```
 
 ### 1. Dashboard
+
 ```bash
-$ dashboard
+dashboard
 ```
 
 ### 2. Thread
-找出当前最繁忙的top3线程，取样间隔为1秒
-```bash
-$ thread -n 3 -i 1000
 
+找出当前最繁忙的top3线程，取样间隔为1秒
+
+```bash
+thread -n 3 -i 1000
 ```
 
 ### 3. Classloader
+
 展示Classloader信息
 
 ```bash
-$ classloader -t
-$ classloader -l
+classloader -t
 ```
 
 ### 4. Sc
+
 展示类加载信息
+
 ```bash
-$ sc -d java.lang.String
-$ sc -d -f -x 2 com.taobao.arthas.demo.web.UserController
+sc -d java.lang.String
+```
+
+```bash
+sc -d -f -x 2 com.taobao.arthas.demo.web.UserController
 ```
 
 ### 5. Watch
+
 监控方法调用人参/异常值
+
 ```bash
-$ watch com.taobao.arthas.demo.web.UserController * '{params[0], throwExp}' 'true'
+watch com.taobao.arthas.demo.web.UserController * '{params[0], throwExp}' 'true'
 ```
 
 ### 6. Trace
+
 监控方法调用栈，统计调用时间
+
 ```bash
-$ trace  com.taobao.arthas.demo.web.UserController findUserById2 > trace.log
+trace  com.taobao.arthas.demo.web.UserController findUserById2 > trace.log
 ```
 
 ### 7. Jad
+
 反编译
+
 ```bash
-$ jad --source-only com.taobao.arthas.demo.web.UserController
+jad --source-only com.taobao.arthas.demo.web.UserController
 ```
 
 ### 8. Mc
+
 内存编译器
+
 ```bash
-$ mc UserController.java
+mc UserController.java
 ```
 
 ### 9. Redefine
+
 热更新
+
 ```bash
-$ redefine -c 18b4aac2 ${CLASS_PATH}
+redefine -c 18b4aac2 ${CLASS_PATH}
 ```
 
 ### 10. OGNL
--  [OGNL官方文档](https://commons.apache.org/proper/commons-ognl/index.html)
--  [Arthas-ognl教程](https://alibaba.github.io/arthas/ognl.html)
+
+* [OGNL官方文档](https://commons.apache.org/proper/commons-ognl/index.html)
+
+* [Arthas-ognl教程](https://alibaba.github.io/arthas/ognl.html)
 
 查看LOGGER实现类
+
 ```bash
-$ ognl '@com.taobao.arthas.demo.web.UserController@LOGGER'
+ognl '@com.taobao.arthas.demo.web.UserController@LOGGER'
 ```
 
 动态修改LOGGER LEVEL
+
 ```bash
-$ ognl '@com.taobao.arthas.demo.web.UserController   @LOGGER.setLevel(@ch.qos.logback.classic.Level@INFO)'
+ognl '@com.taobao.arthas.demo.web.UserController   @LOGGER.setLevel(@ch.qos.logback.classic.Level@INFO)'
 ```
 
 获取加载的日志配置文件
+
 ```bash
-$ ognl '#map1=@org.slf4j.LoggerFactory@getLogger("root").loggerContext.objectMap, #map1.get("CONFIGURATION_WATCH_LIST")'
+ognl '#map1=@org.slf4j.LoggerFactory@getLogger("root").loggerContext.objectMap, #map1.get("CONFIGURATION_WATCH_LIST")'
 ```
